@@ -1,0 +1,5 @@
+# Ignorer les environnements virtuels
+MusicAPI/.venv/
+
+# Ignorer les fichiers d'environnement
+*.env
