@@ -10,8 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
-# import os
-# from dotenv import load_dotenv
+import os
+from dotenv import load_dotenv
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -22,10 +22,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-+_2s&*e9dujqts7yoc(bkw5pk+*4#@h#uabwzb#xb@6%emxh=3'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'secret_key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DJANGO_DEBUG', 'True')
 
 ALLOWED_HOSTS = []
 
@@ -82,20 +82,21 @@ WSGI_APPLICATION = 'MusicAPI.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-# dotenv_path = BASE_DIR.parent / '.env'  # Chemin vers le fichier .env
 
-# load_dotenv(dotenv_path)  # Charger le fichier .env
+dotenv_path = BASE_DIR.parent / '.env'  # Chemin vers le fichier .env
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': os.getenv('DJANGO_DB_NAME', 'DB_Music'),
-#         'USER': os.getenv('DJANGO_DB_USER', 'postgres'),
-#         'PASSWORD': os.getenv('DJANGO_DB_PASSWORD', 'postgres'),
-#         'HOST': os.getenv('DJANGO_DB_HOST', 'localhost'),
-#         'PORT': os.getenv('DJANGO_DB_PORT', '5432'),
-#     }
-# }
+load_dotenv(dotenv_path)  # Charger le fichier .env
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DJANGO_POSTGRES_DB', 'DB_Music'),
+        'USER': os.getenv('DJANGO_POSTGRES_USER', 'postgres'),
+        'PASSWORD': os.getenv('DJANGO_POSTGRES_PASSWORD', 'postgres'),
+        'HOST': os.getenv('DJANGO_POSTGRES_HOST', 'localhost'),
+        'PORT': os.getenv('DJANGO_POSTGRES_PORT', '5432'),
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -132,7 +133,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

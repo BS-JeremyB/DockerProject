@@ -2,4 +2,3 @@
 MusicAPI/.venv/
 
 # Ignorer les fichiers d'environnement
-*.env
