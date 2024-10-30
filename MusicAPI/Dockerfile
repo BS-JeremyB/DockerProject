@@ -15,4 +15,4 @@ RUN pip install python-dotenv
 COPY . /app/
 
 #commandes lancées à l'exécutiuon
-CMD [ "sh", "-c", "python manage.py migrate && python manage.py collectstatic --noinput && python manage.py runserver 0.0.0.0:8000" ]
+# CMD [ "sh", "-c", "python manage.py migrate && python manage.py collectstatic --noinput && python manage.py runserver 0.0.0.0:8000" ]
