@@ -43,7 +43,10 @@ INSTALLED_APPS = [
     'performer',
     'rest_framework',
     'django_filters',
-    'corsheaders'
+    'corsheaders',
+    'rest_framework_simplejwt'
+    
+
 
 ]
 
@@ -88,13 +91,21 @@ dotenv_path = BASE_DIR.parent / '.env'  # Chemin vers le fichier .env
 load_dotenv(dotenv_path)  # Charger le fichier .env
 
 DATABASES = {
-    'default': {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': os.getenv('DJANGO_POSTGRES_DB', 'DB_Music'),
+    #     'USER': os.getenv('DJANGO_POSTGRES_USER', 'postgres'),
+    #     'PASSWORD': os.getenv('DJANGO_POSTGRES_PASSWORD', 'postgres'),
+    #     'HOST': os.getenv('DJANGO_POSTGRES_HOST', 'localhost'),
+    #     'PORT': os.getenv('DJANGO_POSTGRES_PORT', '5432'),
+    # }
+        'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DJANGO_POSTGRES_DB', 'DB_Music'),
-        'USER': os.getenv('DJANGO_POSTGRES_USER', 'postgres'),
-        'PASSWORD': os.getenv('DJANGO_POSTGRES_PASSWORD', 'postgres'),
-        'HOST': os.getenv('DJANGO_POSTGRES_HOST', 'localhost'),
-        'PORT': os.getenv('DJANGO_POSTGRES_PORT', '5432'),
+        'NAME': 'DB_Music',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
@@ -142,7 +153,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 REST_FRAMEWORK = {
-    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'DEFAULT_AUTHENTICATION_CLASSES':('rest_framework_simplejwt.authentication.JWTAuthentication'),
 }
 
 CORS_ALLOWED_ORIGINS = [
