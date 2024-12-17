@@ -91,22 +91,22 @@ dotenv_path = BASE_DIR.parent / '.env'  # Chemin vers le fichier .env
 load_dotenv(dotenv_path)  # Charger le fichier .env
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': os.getenv('DJANGO_POSTGRES_DB', 'DB_Music'),
-    #     'USER': os.getenv('DJANGO_POSTGRES_USER', 'postgres'),
-    #     'PASSWORD': os.getenv('DJANGO_POSTGRES_PASSWORD', 'postgres'),
-    #     'HOST': os.getenv('DJANGO_POSTGRES_HOST', 'localhost'),
-    #     'PORT': os.getenv('DJANGO_POSTGRES_PORT', '5432'),
-    # }
-        'default': {
+    'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'DB_Music',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': os.getenv('DJANGO_POSTGRES_DB', 'DB_Music'),
+        'USER': os.getenv('DJANGO_POSTGRES_USER', 'postgres'),
+        'PASSWORD': os.getenv('DJANGO_POSTGRES_PASSWORD', 'postgres'),
+        'HOST': os.getenv('DJANGO_POSTGRES_HOST', 'localhost'),
+        'PORT': os.getenv('DJANGO_POSTGRES_PORT', '5432'),
     }
+    #     'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'DB_Music',
+    #     'USER': 'postgres',
+    #     'PASSWORD': 'postgres',
+    #     'HOST': 'localhost',
+    #     'PORT': '5432',
+    # }
 }
 
 # Password validation
